@@ -71,7 +71,8 @@ class simpleGreed:
         def remove_vertexes(vert):
             self.vertexes = [ v for v in self.vertexes if not self.matrix.matrix[v][vert]]
         while len(self.vertexes) != 0:
-            vert = choice(self.vertexes)
+            #vert = choice(self.vertexes)
+            vert = max(self.vertexes,key=lambda x:sum([i for i in self.matrix.matrix[x] if i not in self.solution]))
             self.vertexes.remove(vert)
             self.solution.append(vert)
             remove_vertexes(vert)
@@ -326,11 +327,11 @@ def matrix_to_edges(matrix: List[List[bool]]) -> List[Tuple[int, int]]:
 
         return edges
 
-print("Точный алгоритм")
-f = fullSearch(5)
+# print("Точный алгоритм")
+# f = fullSearch(5)
 print("Жадный алгоритм")
-f = simpleGreed(6)
-print("AVSA")
-f = AdvancedVertexSupportAlgorithm(7)
-print("Генетический алгоритм")
-print(genetic_alg(7))
+f = simpleGreed(10)
+# print("AVSA")
+# f = AdvancedVertexSupportAlgorithm(7)
+# print("Генетический алгоритм")
+# print(genetic_alg(7))
